@@ -1,24 +1,22 @@
-# Astro Starter Kit: Minimal
+## mediConnect
+This project is for the hospital' staff and patient's wards or for patient's ownself 
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Description: It helps to share data and important updates between the doctors and patient 
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
-
+### Please do not change or modify the default layout of the files or folders as it may affect the project source and functionality from Devlopers
 ```text
 /
 ├── public/
 ├── src/
-│   └── pages/
+│   └── pages/ 
+        |
+```     
+##       please do not put any components or files that should not be available to public
+```     |
 │       └── index.astro
 └── package.json
 ```
@@ -44,4 +42,3 @@ All commands are run from the root of the project, from a terminal:
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
