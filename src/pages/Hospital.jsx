@@ -9,6 +9,20 @@ export default function Hospital() {
     let [HospitalName, setHospitalName] = useState('Choose Your Hospital')
     //input state of the selection
     let [inputState, setInputState] = useState('District')
+    //for hospital and patient login click
+    let [loginClick, setLoginClick] = useState(null)
+    //reset if any error occurs
+    const ResetButton = () => {
+    setDistrict('Choose Your District')
+    setHospitalName('Choose Your Hospital')
+    setInputState('District')
+    setLoginClick(null)
+    }
+    const ErrorBound = () => {<>
+    <p>something is not right please contact admin or refresh the page</p> 
+    <button onClick={ResetButton}></button>
+    </>
+}
 
     const Districts = [
         {
@@ -71,63 +85,99 @@ export default function Hospital() {
         }
 
     }
+    const handleLoginClick = (param) => {
+        setLoginClick(param)
+        console.log(param)
+
+    }
     //for managing something that is necessary to be listened after every frame
     useEffect(() => {
 
     }, [])
     return (
 
-        <div className="flex flex-col place-items-center justify-center gap-5 p-4 " >
+        // <div className="flex flex-col place-items-center justify-center gap-5 p-4 " >
+        //     {
+        //         inputState === 'District' ?
+        //             // what i really want to do is to create a route where user enters first it will ask for district when it chooses district it ask to select  
+        //             <div className=" flex flex-col justify-center gap-5 place-items-center">
+        //                 <select required={true} value={District} aria-placeholder="Choose Your District" onChange={(e) => { setDistrict(District = e.target.value) }} >
+        //                     <option value="Choose Your District">Choose Your District</option>
+        //                     {Districts.map((district, index) => {
+        //                         return <option key={index} value={district.name} >{district.name}</option>
+        //                     })}
+        //                 </select>
+
+        //                 {District !== "Choose Your District" ?
+        //                     (<button onClick={handleclick}> Next</button>)
+        //                     :
+        //                     (null)}
+
+        //             </div> : inputState === 'Hospital' ?
+        //                 <div className=" flex flex-col justify-center gap-5 place-items-center">
+        //                     <select name="hospital" required={true} onChange={(e) => setHospitalName(e.target.value)}>
+        //                         <option selected value="Choose Your Hospital">Choose Your Hospital</option>
+        //                         {
+        //                             //here i want to get the district fromuser selection and filter out hospitals from that particular district object
+        //                             // i think i can use .map and  find to filter out the hospitals from that object
+
+        //                             //district contains all the array to the District
+
+        //                             //district.name compares with the user Selected District 
+
+
+        //                             Districts.find(d => d.name === District)?.hospitals.map((hospital, index) => (
+        //                                 <option key={index} value={hospital}>{hospital}</option>
+        //                             ))}
+
+
+        //                     </select>
+        //                     {
+        //                         HospitalName !== "Choose Your Hospital" ?
+        //                             (<button onClick={handleclick}> Next</button>)
+        //                             :
+        //                             (null)
+        //                     }
+        //                 </div>
+        //                 : inputState === "Authentication" ?
+
+        <div className="flex flex-col  md:flex-row justify-around gap-8 place-items-center">
             {
-                inputState === 'District' ?
-                    // what i really want to do is to create a route where user enters first it will ask for district when it chooses district it ask to select  
-                    <div className=" flex flex-col justify-center gap-5 place-items-center">
-                        <select required={true} value={District} aria-placeholder="Choose Your District" onChange={(e) => { setDistrict(District = e.target.value) }} >
-                            <option value="Choose Your District">Choose Your District</option>
-                            {Districts.map((district, index) => {
-                                return <option key={index} value={district.name} >{district.name}</option>
-                            })}
-                        </select>
+                loginClick === null  ?
+                                
+                                           (
+                                           <div>
+                                           <div className="flex flex-col place-items-center justify-center gap-8">
+                                                <button onClick={()=>handleLoginClick('HospitalLogin')}>
+                                                    Hospital  Login
+                                                </button>
+                                            </div>
 
-                        {District !== "Choose Your District" ?
-                            (<button onClick={handleclick}> Next</button>)
-                            :
-                            (null)}
-
-                    </div> : inputState === 'Hospital' ?
-                     <div className=" flex flex-col justify-center gap-5 place-items-center">
-                        <select name="hospital" required={true} onChange={(e) => setHospitalName(e.target.value)}>
-                            <option selected value="Choose Your Hospital">Choose Your Hospital</option>
-                            {
-                                //here i want to get the district fromuser selection and filter out hospitals from that particular district object
-                                // i think i can use .map and  find to filter out the hospitals from that object
-
-                                //district contains all the array to the District
-
-                                //district.name compares with the user Selected District 
-
-
-                                Districts.find(d => d.name === District)?.hospitals.map((hospital, index) => (
-                                    <option key={index} value={hospital}>{hospital}</option>
-                                ))}
-
-
-                        </select>
-                        {
-                            HospitalName !== "Choose Your Hospital" ?
-                                (<button onClick={handleclick}> Next</button>)
-                                :
-                                (null)
-                        }
-                    </div>
-                    : inputState === "Authentication" ?<h1> Authentication</h1> : <p>something is not right please contact admin or refresh the page</p>
-
-            }
-
-
-
+                                            <div className="flex flex-col place-items-center justify-center gap-8 ">
+                                                <button onClick={()=>handleLoginClick('PatientLogin')}>
+                                                    Patient Login
+                                                </button>
+                                            </div>
+                                        </div>
+                                        )
+                                        : loginClick === 'HospitalLogin'?
+                                         <div>
+                                              
+                                             
+                                             </div> 
+                                         :loginClick === 'PatientLogin'?<div> patient </div> 
+                                         : ErrorBound
+}
 
         </div>
+        //                     : ErrorBound
+
+        //     }
+
+
+
+
+        // </div>
     );
 }
 
