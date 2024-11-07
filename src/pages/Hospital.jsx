@@ -96,50 +96,50 @@ export default function Hospital() {
     }, [])
     return (
 
-        // <div className="flex flex-col place-items-center justify-center gap-5 p-4 " >
-        //     {
-        //         inputState === 'District' ?
-        //             // what i really want to do is to create a route where user enters first it will ask for district when it chooses district it ask to select  
-        //             <div className=" flex flex-col justify-center gap-5 place-items-center">
-        //                 <select required={true} value={District} aria-placeholder="Choose Your District" onChange={(e) => { setDistrict(District = e.target.value) }} >
-        //                     <option value="Choose Your District">Choose Your District</option>
-        //                     {Districts.map((district, index) => {
-        //                         return <option key={index} value={district.name} >{district.name}</option>
-        //                     })}
-        //                 </select>
+        <div className="flex flex-col place-items-center justify-center gap-5 p-4 " >
+            {
+                inputState === 'District' ?
+                    // what i really want to do is to create a route where user enters first it will ask for district when it chooses district it ask to select  
+                    <div className=" flex flex-col justify-center gap-5 place-items-center">
+                        <select required={true} value={District} aria-placeholder="Choose Your District" onChange={(e) => { setDistrict(District = e.target.value) }} >
+                            <option value="Choose Your District">Choose Your District</option>
+                            {Districts.map((district, index) => {
+                                return <option key={index} value={district.name} >{district.name}</option>
+                            })}
+                        </select>
 
-        //                 {District !== "Choose Your District" ?
-        //                     (<button onClick={handleclick}> Next</button>)
-        //                     :
-        //                     (null)}
+                        {District !== "Choose Your District" ?
+                            (<button onClick={handleclick}> Next</button>)
+                            :
+                            (null)}
 
-        //             </div> : inputState === 'Hospital' ?
-        //                 <div className=" flex flex-col justify-center gap-5 place-items-center">
-        //                     <select name="hospital" required={true} onChange={(e) => setHospitalName(e.target.value)}>
-        //                         <option selected value="Choose Your Hospital">Choose Your Hospital</option>
-        //                         {
-        //                             //here i want to get the district fromuser selection and filter out hospitals from that particular district object
-        //                             // i think i can use .map and  find to filter out the hospitals from that object
+                    </div> : inputState === 'Hospital' ?
+                        <div className=" flex flex-col justify-center gap-5 place-items-center">
+                            <select name="hospital" required={true} onChange={(e) => setHospitalName(e.target.value)}>
+                                <option selected value="Choose Your Hospital">Choose Your Hospital</option>
+                                {
+                                    //here i want to get the district fromuser selection and filter out hospitals from that particular district object
+                                    // i think i can use .map and  find to filter out the hospitals from that object
 
-        //                             //district contains all the array to the District
+                                    //district contains all the array to the District
 
-        //                             //district.name compares with the user Selected District 
-
-
-        //                             Districts.find(d => d.name === District)?.hospitals.map((hospital, index) => (
-        //                                 <option key={index} value={hospital}>{hospital}</option>
-        //                             ))}
+                                    //district.name compares with the user Selected District 
 
 
-        //                     </select>
-        //                     {
-        //                         HospitalName !== "Choose Your Hospital" ?
-        //                             (<button onClick={handleclick}> Next</button>)
-        //                             :
-        //                             (null)
-        //                     }
-        //                 </div>
-        //                 : inputState === "Authentication" ?
+                                    Districts.find(d => d.name === District)?.hospitals.map((hospital, index) => (
+                                        <option key={index} value={hospital}>{hospital}</option>
+                                    ))}
+
+
+                            </select>
+                            {
+                                HospitalName !== "Choose Your Hospital" ?
+                                    (<button onClick={handleclick}> Next</button>)
+                                    :
+                                    (null)
+                            }
+                        </div>
+                        : inputState === "Authentication" ?
 
         <div className="flex flex-col  md:flex-row justify-around gap-8 place-items-center">
             {
@@ -163,21 +163,29 @@ export default function Hospital() {
                                         : loginClick === 'HospitalLogin'?
                                          <div>
                                               
-                                             
+                                             <form>
+                                                <label>Username</label>
+                                                <input placeholder="username_here" type='text' ></input>
+                                                <label>Password</label>
+                                                <input placeholder="password here" type="password"></input>
+                                             </form>
                                              </div> 
-                                         :loginClick === 'PatientLogin'?<div> patient </div> 
+                                         :loginClick === 'PatientLogin'?<div>
+                                             <form>
+
+                                            </form> </div> 
                                          : ErrorBound
 }
 
         </div>
-        //                     : ErrorBound
+                            : ErrorBound
 
-        //     }
-
-
+            }
 
 
-        // </div>
+
+
+        </div>
     );
 }
 

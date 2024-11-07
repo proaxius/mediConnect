@@ -1,0 +1,171 @@
+---
+import { userRegister } from "../api/MongoCon"
+import bcryptjs from "bcryptjs"
+
+
+---
+
+<div class="flex justify-center place-items-center h-screen w-screen">
+  <form id="RegisterForm"
+  class="flex flex-col gap-8  justify-center place-items-center " accept-charset="utf-8">
+  <div class="flex gap-4 justify-around w-full">
+    <label for="Create name">Create name</label>
+    <input required="true" id="name"   placeholder="name"></input>
+  </div>
+  <div class="flex gap-4 justify-around w-full">
+    <label for="Create Username">Create Username</label>
+    <input required="true" id="username"  placeholder="Username"></input>
+  </div>
+  <div class="flex gap-4 justify-around w-full">
+    <label for="Email">Email</label>
+    <input required="true" id="email" placeholder="Email" type="email"></input>
+  </div>
+  <div class="flex gap-4 justify-around w-full">
+    <label for="ID-no">Id-no</label>
+    <input required="true" id="memberID"  placeholder="job-id,staff-id,doctor-id no" type="text"></input>
+  </div>
+  <div class="flex gap-4 justify-around w-full">
+    <label for="Position">Position</label>
+    <select required="true" id="position"  required={true} >
+      <option value="Trainee">Trainee</option>
+      <option value="Doctor">Doctor </option>
+      <option value="Nurse">Nurse </option>
+      <option value="Ward Manager">Ward Manager </option>
+      <option value="Managment">Managment</option>
+      <option value="Head of Department">Head of Department</option>
+      <option value="Helper">Helper</option>
+      <option value="IT Department">IT Department</option>
+    </select>
+  </div>
+  <div class="flex gap-4 justify-around w-full">
+
+    <label for="Password">Password</label>
+    <input required="true" id="password"
+      type="password"
+      placeholder="Password"
+      
+    ></input>
+  </div>
+  <div class="flex gap-4 justify-around w-full">
+    <label for="Confirm password">Confirm Password</label>
+    <input required="true" id="confirmPassword"
+      type="password"
+      placeholder="Confirm Password"
+      
+    ></input>
+  </div>
+  <button type="submit">
+    Create User
+  </button>
+  <button
+    type="reset"
+     >
+    Clear All
+  </button>
+</form>
+</div>
+<client>
+
+  <script is:inline define:vars  >
+import { userRegister } from "./api/userRegister"
+
+  
+    
+    
+    
+const id_name = document.getElementById("name")
+const id_username = document.getElementById("username")
+const id_email = document.getElementById("email")
+const id_memberID = document.getElementById("memberID")
+const id_position = document.getElementById("position")
+const id_password = document.getElementById("password")
+const id_confirmPassword = document.getElementById("confirmPassword")
+const userForm = document.getElementById("RegisterForm")
+
+const inputs = [ id_name, id_username ,id_email , id_memberID , id_position ,id_password ,id_confirmPassword]
+let name = " "
+let username =" "
+let email = " "
+let memberID = " "
+let position = " "
+let password = " "
+let confirmPassword = " "
+inputs.forEach((input,index) =>{
+  input.addEventListener('input',(event)=>{
+switch(index){
+case 0:
+  name = event.target.value;
+  console.log(index , event.target.value)
+  break;
+case 1:
+  username = event.target.value;
+  console.log(index , event.target.value)
+  break;
+case 2:
+email = event.target.value;
+console.log(index , event.target.value)
+  break;
+case 3:
+  memberID = event.target.value;
+  console.log(index , event.target.value)
+  break;
+case 4:
+  position = event.target.value;
+  console.log(index , event.target.value)
+  break;
+case 5:
+  password = event.target.value;
+  console.log(index , event.target.value)
+  break;
+case 6:
+  confirmPassword = event.target.value;
+  console.log(index , event.target.value)
+  break;
+default :
+console.log("invalid id index" , index)
+}
+})
+
+})
+const FormData = {
+    name ,
+    username,
+    email,
+    memberID,
+    position,
+    password,
+    confirmPassword
+  }
+
+userForm.addEventListener('submit',  async (event ) => {
+  event.preventDefault()
+  if(password !== confirmPassword) {
+    alert("check the password")
+    return;
+  } else if( password === " "){
+    alert("field is empty")
+    return;
+  }
+   try {
+
+    const response = await fetch(userRegister({
+      method:'POST',
+        headers: {
+          'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(FormData)
+       } ))
+    const result = await response.json()
+    if (response.ok) {
+      alert("user created successfully as" , FormData.username)
+    } else {
+      console.error('Submission failed ', result.message)
+    }
+    } catch (error) {
+      console.log(error) 
+
+    }
+})
+ 
+</script>
+  </client>
