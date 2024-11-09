@@ -1,6 +1,6 @@
-import { OpenconDB, CloseconDB } from "../pages/api/MongoCon";
+import { OpenconDB, CloseconDB } from "./MongoCon";
 import { useEffect, useState } from "react";
-import bcrypt from "bcryptjs";
+
 import "../pages/global.css";
 
 export default function  RegistrationPage () {
