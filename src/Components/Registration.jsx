@@ -1,39 +1,61 @@
-import { OpenconDB, CloseconDB } from "./MongoCon";
+import tursodb from "../lib/tursodb"
 import { useEffect, useState } from "react";
 
 import "../pages/global.css";
 
-export default function  RegistrationPage () {
+
+export default function  RegistrationPage (event) {
+  
   const [FormData, setFormData] = useState({
+    id: "",
     name: "",
     username: "",
     email: "",
-    IDnumber: "",
     position: "Trainee",
     password: "",
     confirmPassword: "",
   });
-  const handleChange =(event)=> {
+  const handleChange = (event) => {
     console.log(event.target.name)
     
     const { name, value } = event.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
   }
-  function handleSubmit(params) {
-    alert(params.target)
+async function newUser (){
+  await tursodb.execute(`
+    INSERT INTO user (id ,name, username, email, position, passwordhash)
+    VALUES (?, ?, ?, ?, ?)
+  `, [
+    FormData.name,
+    FormData.username,
+    FormData.email,
+    FormData.position,
+    FormData.password
+  ]);
+   
+ 
+}
+   async function handleSubmit() {
+    try{
+   await newUser()
+    } catch (error){
+      console.log(error)
+    }
   }
 
   return (
     <div className="flex justify-center place-items-center h-screen w-screen">
+    
       <form
         className="flex flex-col gap-8  justify-center place-items-center "
         onSubmit={handleSubmit}
         
+        
         acceptCharset="utf-8">
         <div className="flex gap-4 justify-around w-full">
           <label htmlFor="Create name">Create name</label>
-          <input value={FormData.name} onChange={handleChange} placeholder="name"></input>
+          <input value={FormData.name} onChange={()=> handleChange} placeholder="name"></input>
         </div>
         <div className="flex gap-4 justify-around w-full">
           <label htmlFor="Create Username">Create Username</label>
@@ -45,7 +67,7 @@ export default function  RegistrationPage () {
         </div>
         <div className="flex gap-4 justify-around w-full">
           <label htmlFor="ID-no">Id-no</label>
-          <input value={FormData.IDnumber} onChange={handleChange} placeholder="job-id,staff-id,doctor-id no" type="text"></input>
+          <input value={FormData.id} onChange={handleChange} placeholder="job-id,staff-id,doctor-id no" type="text"></input>
         </div>
         <div className="flex gap-4 justify-around w-full">
           <label htmlFor="Position">Position</label>

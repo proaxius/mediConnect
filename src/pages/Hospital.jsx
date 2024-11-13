@@ -94,6 +94,9 @@ export default function Hospital() {
     useEffect(() => {
 
     }, [])
+    const handleSubmit = () =>{
+        
+    }
     return (
 
         <div className="flex flex-col place-items-center justify-center gap-5 p-4 " >
@@ -163,7 +166,7 @@ export default function Hospital() {
                                         : loginClick === 'HospitalLogin'?
                                          <div>
                                               
-                                             <form>
+                                             <form onSubmit={handleSubmit}>
                                                 <label>Username</label>
                                                 <input placeholder="username_here" type='text' ></input>
                                                 <label>Password</label>

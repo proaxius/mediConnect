@@ -1,7 +1,50 @@
 ---
-import Hospital from "./Hospital.jsx"
+import tursoDB from "../lib/tursodb"
 import "./global.css"
-import Registration from './Registration.astro'
+import Patient from "../Components/Patient"
+// import Registration from "./Registration.astro"
+//only uncomment below if project db is reinitialised or this is just a nuisance to the startup db are already created 
+// const createTables =`
+// CREATE TABLE IF NOT EXISTS users (
+//     id INTEGER PRIMARY KEY AUTOINCREMENT,
+//     name VARCHAR(255),
+//     username VARCHAR(60),
+//     email VARCHAR(255),
+//     position VARCHAR(155),
+//     passwordhash VARCHAR(255)
+// ) `
+// const createtable2 = `  
+// CREATE TABLE IF NOT EXISTS patients (
+//     id INTEGER PRIMARY KEY,
+//     name VARCHAR(255),
+//     handler VARCHAR(255),
+//     email VARCHAR(60),
+//     admitStatus BOOLEAN DEFAULT FALSE,
+//     comments TEXT,
+//     visitDate DATE,
+//     address VARCHAR(255)
+// )
+// `
+
+
+// async function initDB (){
+// 	try {
+// 		await tursoDB.execute(createTables);
+// 		console.log("DB Connection verification started")
+// 	} catch (error) {
+// 		console.log(error)
+		
+// 	}
+// 	try {
+// 		await tursoDB.execute(createtable2);
+// 		console.log("DB Connection is good to go ,  Wish you a very GooDLuck  save alot of Lives")
+
+// 	} catch (error) {
+// 		console.log(error)
+// 	}
+// }
+//  initDB()
+
 ---
 
 <html lang="en">
@@ -12,8 +55,15 @@ import Registration from './Registration.astro'
 		<title>Astro</title>
 	</head>
 	<body>
-	<!-- <Hospital client:load/>
-	 -->
-		<Registration  />
+		
+	<!-- <Patient server:defer /> -->
+	
+		<!-- <Registration server:defer id="Registration"/> -->
+	<a href="/Registration">Register</a>
+
+
 	</body>
 </html>
+<script>
+
+</script>
