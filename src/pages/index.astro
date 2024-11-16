@@ -1,9 +1,8 @@
 ---
-import tursoDB from "../lib/tursodb"
-import "./global.css"
-import Patient from "../Components/Patient"
+import tursoDB from "../lib/tursodb";
+import Home from "../Components/Home"
 // import Registration from "./Registration.astro"
-//only uncomment below if project db is reinitialised or this is just a nuisance to the startup db are already created 
+//only uncomment below if project db is reinitialised or this is just a nuisance to the startup db are already created
 // const createTables =`
 // CREATE TABLE IF NOT EXISTS users (
 //     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,9 +10,10 @@ import Patient from "../Components/Patient"
 //     username VARCHAR(60),
 //     email VARCHAR(255),
 //     position VARCHAR(155),
+// 	placeofJob	VARCHAR(255),
 //     passwordhash VARCHAR(255)
 // ) `
-// const createtable2 = `  
+// const createtable2 = `
 // CREATE TABLE IF NOT EXISTS patients (
 //     id INTEGER PRIMARY KEY,
 //     name VARCHAR(255),
@@ -26,14 +26,13 @@ import Patient from "../Components/Patient"
 // )
 // `
 
-
 // async function initDB (){
 // 	try {
 // 		await tursoDB.execute(createTables);
 // 		console.log("DB Connection verification started")
 // 	} catch (error) {
 // 		console.log(error)
-		
+
 // 	}
 // 	try {
 // 		await tursoDB.execute(createtable2);
@@ -43,27 +42,20 @@ import Patient from "../Components/Patient"
 // 		console.log(error)
 // 	}
 // }
-//  initDB()
-
+// initDB()
 ---
 
 <html lang="en">
-<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Astro</title>
-	</head>
-	<body>
-		
-	<!-- <Patient server:defer /> -->
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro</title>
+  </head>
+  <body>
+
+	<Home client:load />
 	
-		<!-- <Registration server:defer id="Registration"/> -->
-	<a href="/Registration">Register</a>
-
-
-	</body>
+  </body>
 </html>
-<script>
-
-</script>
+<script></script>

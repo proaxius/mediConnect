@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+alert("The login routes are currently in development, if you want to check other functionality paste /Registration and /admin/Dashboard to view some other routes which tested and in working condition ")
 
-
-export default function Hospital() {
+export default function Home() {
     //for just passing a default value in the Selected tag for dropdown
     let [DefaultValue, setDefaultValue] = useState(" ")
     //setting district according to the selection
@@ -87,6 +87,7 @@ export default function Hospital() {
     }
     const handleLoginClick = (param) => {
         setLoginClick(param)
+        console.log("District " + District , "  Hospital " + HospitalName)
         console.log(param)
 
     }
@@ -166,7 +167,7 @@ export default function Hospital() {
                                         : loginClick === 'HospitalLogin'?
                                          <div>
                                               
-                                             <form onSubmit={handleSubmit}>
+                                             <form onSubmit={handleSubmit} className="flex flex-col justify-center place-items-center gap-4">
                                                 <label>Username</label>
                                                 <input placeholder="username_here" type='text' ></input>
                                                 <label>Password</label>
@@ -174,8 +175,9 @@ export default function Hospital() {
                                              </form>
                                              </div> 
                                          :loginClick === 'PatientLogin'?<div>
-                                             <form>
-
+                                             <form className="flex flex-col justify-center place-items-center gap-4">
+                                             <label>patient_id</label>
+                                             <input placeholder="patient_id" type='text' ></input>
                                             </form> </div> 
                                          : ErrorBound
 }

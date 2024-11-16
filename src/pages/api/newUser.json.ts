@@ -12,21 +12,33 @@ export const POST: APIRoute = async ({ request }) => {
     const username: string = data.username;
     const email: string = data.email;
     const position: string = data.position;
+    const placeofJob: string = "NotActivated";
     const password = data.password;
     const salt = 10;
     const hashedPassword = await bcryptjs.hash(password, salt);
     const passwordhash: string = hashedPassword;
     const sql =
-      "INSERT INTO users (id, name, username, email, position, passwordhash) VALUES (?,?,?,?,?,?)";
-    const args = [id, name, username, email, position, passwordhash];
+      "INSERT INTO users (id, name, username, email, position, placeofJob, passwordhash) VALUES (?,?,?,?,?,?,?)";
+    const args = [
+      id,
+      name,
+      username,
+      email,
+      position,
+      placeofJob,
+      passwordhash,
+    ];
     await turso.execute({ sql, args });
     return new Response(JSON.stringify({ message: "Success" }), {
       status: 200,
-    });
+    
+    }
+  );
   } catch (error) {
     console.error("Error inserting data:", error);
     return new Response(JSON.stringify({ message: "Error occurred" }), {
       status: 400,
-    });
+    } ,
+  );
   }
 };
